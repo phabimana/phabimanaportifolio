@@ -1,0 +1,773 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HABIMANA Patrick | Professional Filmmaker</title>
+    
+    <!-- Tailwind CSS for Modern Styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;700;800&family=Playfair+Display:ital,wght@0,700;1,400&display=swap" rel="stylesheet">
+
+    <!-- Tailwind Config to match your Brand Colors -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brandRed: '#D90429',
+                        brandYellow: '#FFB703',
+                        brandDark: '#0A0908',
+                        brandLight: '#F4F4F9'
+                    },
+                    fontFamily: {
+                        sans: ['Montserrat', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles & Animations */
+        body {
+            background-color: #0A0908;
+            color: #FFFFFF;
+        }
+        .text-gradient {
+            background: linear-gradient(90deg, #FFB703, #D90429);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .project-card {
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .project-card:hover .project-overlay {
+            opacity: 1;
+        }
+        .project-card:hover img {
+            transform: scale(1.05);
+        }
+        
+        /* Modal Transitions */
+        .modal {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease-in-out;
+        }
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            transform: scale(0.95) translateY(20px);
+            transition: all 0.3s ease-in-out;
+        }
+        .modal.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0A0908;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #D90429;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FFB703;
+        }
+
+        /* Responsive Iframe Container */
+        .iframe-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+        }
+        .iframe-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-brandRed selection:text-white flex flex-col min-h-screen">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-40 bg-brandDark/90 backdrop-blur-md border-b border-white/10 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-3">
+                    <span class="font-serif text-2xl font-bold tracking-wider text-white">NAMABIHA<span class="text-brandRed">.</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" class="text-gray-300 hover:text-brandYellow transition px-3 py-2 text-sm font-semibold uppercase tracking-wider">Home</a>
+                    <a href="#about" class="text-gray-300 hover:text-brandYellow transition px-3 py-2 text-sm font-semibold uppercase tracking-wider">About</a>
+                    <a href="#portfolio" class="text-gray-300 hover:text-brandYellow transition px-3 py-2 text-sm font-semibold uppercase tracking-wider">Portfolio</a>
+                    <a href="#contact" class="bg-brandRed hover:bg-red-700 text-white px-5 py-2 rounded-full text-sm font-bold transition shadow-lg shadow-brandRed/30">Let's Talk</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <!-- Decorative background elements -->
+            <div class="absolute top-20 left-10 w-72 h-72 bg-brandRed rounded-full mix-blend-multiply filter blur-[100px] opacity-20"></div>
+            <div class="absolute bottom-10 right-10 w-72 h-72 bg-brandYellow rounded-full mix-blend-multiply filter blur-[100px] opacity-20"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="w-full lg:w-1/2 text-center lg:text-left space-y-8">
+                    <h2 class="text-brandYellow font-semibold tracking-widest uppercase text-sm md:text-base">Hello, I am</h2>
+                    <h1 class="text-5xl md:text-7xl font-serif font-bold leading-tight">
+                        HABIMANA <br /> <span class="text-gradient">Patrick</span>
+                    </h1>
+                    <p class="text-xl text-gray-300 font-light max-w-xl mx-auto lg:mx-0">
+                        Professional Filmmaker & Visionary Creator based in Kigali, Rwanda. Bringing imagination to reality through the lens.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start pt-4">
+                        <a href="#portfolio" class="bg-white text-brandDark px-8 py-3 rounded-full font-bold hover:bg-gray-200 transition">View My Work</a>
+                        <a href="#contact" class="border border-brandRed text-brandRed hover:bg-brandRed hover:text-white px-8 py-3 rounded-full font-bold transition">Contact Me</a>
+                    </div>
+                </div>
+                
+                <div class="w-full lg:w-1/2 flex justify-center lg:justify-end">
+                    <div class="relative w-72 h-72 md:w-96 md:h-96">
+                        <!-- Updated Direct Profile Image Link -->
+                        <div class="absolute inset-0 rounded-full border-2 border-brandYellow translate-x-4 translate-y-4"></div>
+                        <img src="https://i.postimg.cc/Y003Mc2d/I-love-you-all-reelsforyou-positivethoughts-postworkout-namabiha-empire.jpg" 
+                             alt="HABIMANA Patrick" 
+                             class="absolute inset-0 w-full h-full object-cover rounded-full z-10 grayscale hover:grayscale-0 transition duration-500 shadow-2xl"
+                             loading="eager">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white/5 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-serif font-bold text-white mb-4">The Director's Cut</h2>
+                <div class="w-20 h-1 bg-brandRed mx-auto"></div>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6 text-gray-300 leading-relaxed text-lg">
+                    <p>
+                        I grew up in the vibrant City of Kigali, captivated by movies of all kinds. This early fascination drew me close to the industry of creativity and innovation, gifting me with a profound vision and an imagination that I constantly strive to bring to reality.
+                    </p>
+                    <p>
+                        My journey is driven by storytelling, capturing the essence of human emotion, and presenting historical and modern narratives with cinematic excellence.
+                    </p>
+                </div>
+                
+                <div class="bg-brandDark p-8 rounded-2xl border border-white/10 shadow-xl">
+                    <h3 class="text-xl font-bold text-brandYellow mb-6 uppercase tracking-wider">Expertise & Certifications</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-brandRed/20 flex items-center justify-center text-brandRed">
+                                <i class="fas fa-video"></i>
+                            </div>
+                            <span class="font-medium">Filmmaking & Video Production</span>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-brandRed/20 flex items-center justify-center text-brandRed">
+                                <i class="fas fa-layer-group"></i>
+                            </div>
+                            <span class="font-medium">Multimedia & Graphic Design</span>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-brandRed/20 flex items-center justify-center text-brandRed">
+                                <i class="fas fa-camera-retro"></i>
+                            </div>
+                            <span class="font-medium">Photography</span>
+                        </li>
+                        <li class="flex items-center gap-4">
+                            <div class="w-10 h-10 rounded-full bg-brandRed/20 flex items-center justify-center text-brandRed">
+                                <i class="fas fa-microphone-alt"></i>
+                            </div>
+                            <span class="font-medium">Journalism & Communication</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section with Categories -->
+    <section id="portfolio" class="py-24">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center md:items-end mb-12 gap-6">
+                <div class="text-center md:text-left">
+                    <h2 class="text-3xl md:text-4xl font-serif font-bold text-white mb-4">Featured Projects</h2>
+                    <div class="w-20 h-1 bg-brandYellow mx-auto md:mx-0"></div>
+                </div>
+
+                <!-- Category Filters -->
+                <div class="flex flex-wrap gap-3 justify-center" id="portfolio-filters">
+                    <button class="filter-btn active px-6 py-2 rounded-full text-sm font-semibold transition border border-brandRed bg-brandRed text-white shadow-lg shadow-brandRed/30" data-filter="all">All Projects</button>
+                    <button class="filter-btn px-6 py-2 rounded-full text-sm font-semibold transition border border-white/20 text-gray-400 hover:border-brandRed hover:text-white" data-filter="video">Filmmaking</button>
+                    <button class="filter-btn px-6 py-2 rounded-full text-sm font-semibold transition border border-white/20 text-gray-400 hover:border-brandRed hover:text-white" data-filter="design">Design & Docs</button>
+                </div>
+            </div>
+
+            <!-- Dynamic Project Grid -->
+            <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Projects will be rendered here by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-brandRed relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10" style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"></div>
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h2 class="text-4xl font-serif font-bold text-white mb-6">Ready to create something amazing?</h2>
+            <p class="text-white/80 text-lg mb-12 max-w-2xl mx-auto">Whether it's a film, documentary, or multimedia project, let's bring your vision to life. Reach out directly through any of the channels below.</p>
+            
+            <div class="flex flex-wrap justify-center gap-6">
+                <!-- Contact Methods -->
+                <a href="tel:0780499978" class="bg-white text-brandRed w-16 h-16 rounded-full flex items-center justify-center text-2xl hover:scale-110 transition shadow-lg" title="Call Me">
+                    <i class="fas fa-phone"></i>
+                </a>
+                <a href="https://wa.me/250780499978" target="_blank" rel="noopener noreferrer" class="bg-white text-[#25D366] w-16 h-16 rounded-full flex items-center justify-center text-2xl hover:scale-110 transition shadow-lg" title="WhatsApp">
+                    <i class="fab fa-whatsapp"></i>
+                </a>
+                <a href="mailto:Phabimana230@gmail.com" class="bg-white text-brandDark w-16 h-16 rounded-full flex items-center justify-center text-2xl hover:scale-110 transition shadow-lg" title="Email Me">
+                    <i class="fas fa-envelope"></i>
+                </a>
+                
+                <div class="w-px h-16 bg-white/30 mx-4 hidden sm:block"></div>
+
+                <!-- Socials -->
+                <a href="https://www.instagram.com/namabiha_empire?igsh=cXl0cThtZzc1M3ht" target="_blank" rel="noopener noreferrer" class="bg-brandDark text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl hover:bg-[#E1306C] transition shadow-lg" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=100082816120272" target="_blank" rel="noopener noreferrer" class="bg-brandDark text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl hover:bg-[#1877F2] transition shadow-lg" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://youtube.com/@namabiha_empire?si=GRtqGSOTmMDTTY-v" target="_blank" rel="noopener noreferrer" class="bg-brandDark text-white w-16 h-16 rounded-full flex items-center justify-center text-2xl hover:bg-[#FF0000] transition shadow-lg" title="YouTube">
+                    <i class="fab fa-youtube"></i>
+                </a>
+            </div>
+
+            <div class="mt-12 text-white/80 flex items-center justify-center gap-2">
+                <i class="fas fa-map-marker-alt text-brandYellow"></i>
+                <span>KN 23 ST, Kigali, Rwanda</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brandDark py-8 border-t border-white/10 text-center relative mt-auto">
+        <p class="text-gray-500 text-sm">&copy; <span id="year"></span> HABIMANA Patrick. All Rights Reserved.</p>
+        
+        <!-- Floating Studio Button -->
+        <button id="open-login-btn" class="fixed bottom-6 right-6 w-14 h-14 bg-brandYellow text-brandDark rounded-full shadow-[0_0_20px_rgba(255,183,3,0.5)] flex items-center justify-center text-2xl hover:scale-110 hover:bg-white transition z-40" title="Access Studio">
+            <i class="fas fa-plus"></i>
+        </button>
+    </footer>
+
+    <!-- ==================== MODALS ==================== -->
+
+    <!-- Preview Modal -->
+    <div id="preview-modal" class="modal fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4">
+        <div class="modal-content relative w-full max-w-5xl bg-brandDark border border-white/10 rounded-xl overflow-hidden shadow-2xl">
+            <!-- Header -->
+            <div class="flex justify-between items-center p-4 border-b border-white/10">
+                <div class="flex items-center gap-3">
+                    <span id="preview-category-icon" class="text-brandYellow"></span>
+                    <h3 id="preview-title" class="text-lg font-bold text-white truncate pr-4">Project Preview</h3>
+                </div>
+                <button id="close-preview" class="text-gray-400 hover:text-brandRed text-3xl transition leading-none">&times;</button>
+            </div>
+            <!-- Body -->
+            <div class="p-0 sm:p-4 bg-black/50">
+                <div id="iframe-wrapper" class="iframe-container shadow-lg">
+                    <!-- Iframe injected via JS -->
+                </div>
+                <div class="p-4 mt-2">
+                    <p id="preview-desc" class="text-gray-300 text-sm leading-relaxed"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Login Modal -->
+    <div id="login-modal" class="modal fixed inset-0 z-50 flex items-center justify-center bg-black/90 backdrop-blur-sm p-4">
+        <div class="modal-content w-full max-w-md bg-brandDark border border-white/10 rounded-2xl p-8 shadow-2xl relative">
+            <button id="close-login" class="absolute top-4 right-5 text-gray-400 hover:text-white text-3xl leading-none">&times;</button>
+            <div class="text-center mb-8">
+                <i class="fas fa-lock text-4xl text-brandYellow mb-4"></i>
+                <h3 class="text-2xl font-serif font-bold">Studio Access</h3>
+                <p class="text-gray-400 text-sm mt-2">Authorized personnel only.</p>
+            </div>
+            
+            <form id="login-form" class="space-y-5">
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-1">Email</label>
+                    <input type="email" id="login-email" required class="w-full bg-black/50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brandRed transition">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-gray-300 mb-1">Password</label>
+                    <input type="password" id="login-password" required class="w-full bg-black/50 border border-gray-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-brandRed transition">
+                </div>
+                <p id="login-error" class="text-brandRed text-sm hidden text-center">Invalid credentials. Access denied.</p>
+                <button type="submit" class="w-full bg-brandRed hover:bg-red-700 text-white font-bold py-3 rounded-lg transition">Enter Studio</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Studio Dashboard Modal -->
+    <div id="studio-modal" class="modal fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4 overflow-y-auto">
+        <div class="modal-content w-full max-w-6xl bg-[#111] border border-white/10 rounded-2xl shadow-2xl flex flex-col max-h-[90vh]">
+            
+            <!-- Studio Header -->
+            <div class="p-6 border-b border-white/10 flex justify-between items-center sticky top-0 bg-[#111] z-10">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 bg-brandYellow rounded-full flex items-center justify-center text-brandDark text-xl shadow-lg shadow-brandYellow/20">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-serif font-bold text-white">Creator Studio</h2>
+                        <p class="text-sm text-gray-400">Manage your portfolio content</p>
+                    </div>
+                </div>
+                <button id="close-studio" class="text-gray-400 hover:text-white bg-white/5 w-10 h-10 rounded-full flex items-center justify-center transition text-xl">&times;</button>
+            </div>
+
+            <!-- Studio Body -->
+            <div class="flex flex-col lg:flex-row flex-1 overflow-hidden">
+                
+                <!-- Add New Project Form (Left Sidebar) -->
+                <div class="lg:w-1/3 bg-black/40 p-6 border-r border-white/10 overflow-y-auto">
+                    <h3 class="text-lg font-bold text-brandYellow mb-6 flex items-center gap-2">
+                        <i class="fas fa-plus-circle"></i> Add New Project
+                    </h3>
+                    <form id="add-project-form" class="space-y-4">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wide">Category</label>
+                                <select id="proj-category" required class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-2.5 text-white text-sm focus:border-brandRed outline-none">
+                                    <option value="video">Filmmaking</option>
+                                    <option value="design">Design & Docs</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wide">Format Type</label>
+                                <select id="proj-type" required class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-2.5 text-white text-sm focus:border-brandRed outline-none">
+                                    <option value="VIDEO">Video</option>
+                                    <option value="PDF">Document (PDF)</option>
+                                    <option value="IMAGE">Image</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wide">Title</label>
+                            <input type="text" id="proj-title" required placeholder="Project Name" class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-2.5 text-white text-sm focus:border-brandRed outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wide">Direct Link (YouTube/Drive)</label>
+                            <input type="url" id="proj-link" required placeholder="https://..." class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-2.5 text-white text-sm focus:border-brandRed outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wide">Thumbnail Image Link</label>
+                            <input type="url" id="proj-thumb" required placeholder="Image URL..." class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-2.5 text-white text-sm focus:border-brandRed outline-none">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wide">Description</label>
+                            <textarea id="proj-desc" required rows="3" placeholder="Brief details..." class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-2.5 text-white text-sm focus:border-brandRed outline-none resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-brandRed hover:bg-red-700 text-white font-bold py-3 rounded text-sm transition mt-4">
+                            Publish Project
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Project List (Right Main Area) -->
+                <div class="lg:w-2/3 p-6 overflow-y-auto bg-[#0A0908]">
+                    <h3 class="text-lg font-bold text-white mb-6 flex items-center gap-2">
+                        <i class="fas fa-list"></i> Managed Projects
+                    </h3>
+                    <div class="overflow-x-auto rounded-lg border border-white/10">
+                        <table class="w-full text-left text-sm text-gray-300">
+                            <thead class="bg-white/5 text-xs uppercase text-gray-400">
+                                <tr>
+                                    <th class="px-4 py-3">Thumbnail</th>
+                                    <th class="px-4 py-3">Details</th>
+                                    <th class="px-4 py-3">Category & Type</th>
+                                    <th class="px-4 py-3 text-right">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody id="studio-table-body" class="divide-y divide-white/5">
+                                <!-- Table rows injected via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript Application Logic -->
+    <script type="module">
+        // Import Firebase (Using exact provided configuration)
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-analytics.js";
+        
+        const firebaseConfig = {
+            apiKey: "AIzaSyB2UELJm1OvIohtX6FRh3QVwWA1qcSDWJw",
+            authDomain: "portfolionamabiha.firebaseapp.com",
+            projectId: "portfolionamabiha",
+            storageBucket: "portfolionamabiha.firebasestorage.app",
+            messagingSenderId: "205644075658",
+            appId: "1:205644075658:web:320d4b3fb90c01d10fd373",
+            measurementId: "G-8MSQ9TTJBZ"
+        };
+        
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app);
+
+        // --- Core Application State & Initial Data ---
+        // Added categorization (video vs design) and updated the images
+        let projects = [
+            {
+                id: "p1",
+                title: "OFFICIAL ANIMATION LOGO OF NAMABIHA Empire",
+                category: "video",
+                type: "VIDEO",
+                link: "https://www.youtube.com/watch?v=11k6YMNcjbE",
+                thumbnail: "https://img.youtube.com/vi/11k6YMNcjbE/hqdefault.jpg",
+                description: "Gold animation of the NAMABIHA Empire. That revolves to show the stunning view of the logo."
+            },
+            {
+                id: "p2",
+                title: "HARYA WE ❓ NELSON MANDELA YARAPFUYE ❓❓❓❓",
+                category: "video",
+                type: "VIDEO",
+                link: "https://www.youtube.com/watch?v=XL2jqtOLGOs",
+                thumbnail: "https://img.youtube.com/vi/XL2jqtOLGOs/hqdefault.jpg",
+                description: "Nelson Mandela stands as a global icon of peace, resilience, and reconciliation. After spending 27 years in prison for opposing South Africa's apartheid system, he emerged without bitterness to lead his divided nation. As the country's first black president, he championed forgiveness over vengeance. His legacy teaches us that true leadership requires immense personal sacrifice. His words continue to inspire generations."
+            },
+            {
+                id: "p3",
+                title: "IBINTU BIKOMEYE REPUBULIKA YA 1 Y'URWANDA 🇷🇼 YANANIWE GUKORA",
+                category: "video",
+                type: "VIDEO",
+                link: "https://www.youtube.com/watch?v=FRcDtFpasfI",
+                thumbnail: "https://img.youtube.com/vi/FRcDtFpasfI/hqdefault.jpg",
+                description: "The First Republic of Rwanda faced significant challenges in establishing a unified society following independence. Policies often marginalized certain groups, creating deep-seated divisions. Economic stagnation and political instability further complicated the era. The failure to foster inclusive governance ultimately led to its downfall, serving as a critical lesson in Rwandan history. Understanding these shortcomings is essential for building the resilient nation we see today."
+            },
+            {
+                id: "p4",
+                title: "AMAGAMBO AKOMEYE YAVUZWE NA PEREZIDA W'UBURUSIYA VLADIMIR PUTIN",
+                category: "video",
+                type: "VIDEO",
+                link: "https://www.youtube.com/watch?v=mBEsMfPYnc0",
+                thumbnail: "https://img.youtube.com/vi/mBEsMfPYnc0/hqdefault.jpg",
+                description: "Vladimir Putin has been a central and controversial figure in global politics for over two decades. His leadership style is often characterized by a strong centralization of power and a focus on restoring Russia's geopolitical influence. While his domestic policies stabilized the economy early on, his assertive international actions have significantly altered relations with the West. Analyzing his speeches provides crucial insights into modern geopolitical dynamics."
+            },
+            {
+                id: "p5",
+                title: "THE DEFIANT KING",
+                category: "design",
+                type: "PDF",
+                link: "https://drive.google.com/file/d/1XaMByLpsQ58Out84YA1J7Z2Sq7v7XOve/view?usp=sharing",
+                thumbnail: "https://images.unsplash.com/photo-1589829085413-56de8ae18c73?auto=format&fit=crop&w=600&q=80",
+                description: "The captivating historical narrative and story of Yuhi V Musinga, detailing his defiance and the intricate realities of his reign."
+            },
+            {
+                id: "p6",
+                title: "SPACE",
+                category: "design",
+                type: "PDF",
+                link: "https://drive.google.com/file/d/13wTmAs3UJz252cPH7BCatV2M_2gLwnF8/view?usp=sharing",
+                thumbnail: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=600&q=80",
+                description: "The beautiful and meticulously designed book cover of the book named SPACE, authored by OLIVIA WILSON."
+            },
+            {
+                id: "p7",
+                title: "THE NAD MASTER DASHBOARD",
+                category: "design",
+                type: "IMAGE",
+                link: "https://drive.google.com/file/d/16vNaW5ytk2zI-vMo9zX1H3S4UH39Hg67/view?usp=sharing",
+                // Updated specific thumbnail
+                thumbnail: "https://i.postimg.cc/7ZgVnn5k/nad-master-dashboard-(1).png",
+                description: "The official logo and visual identity design for the NAD MASTER DASHBOARD."
+            },
+            {
+                id: "p8",
+                title: "THE GARDEN",
+                category: "design",
+                type: "PDF",
+                link: "https://drive.google.com/file/d/18Rqo1hlTF0jmxqrdInrcAcK_Yc2NR2j2/view?usp=sharing",
+                thumbnail: "https://images.unsplash.com/photo-1416879598555-2791f600f133?auto=format&fit=crop&w=600&q=80",
+                description: "The stunning book cover of the novel named THE GARDEN, beautifully crafted by A D E L I N E P A L M E R S T O N."
+            }
+        ];
+
+        let currentFilter = 'all';
+
+        // --- Utility Functions ---
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        function getEmbedUrl(url) {
+            if (!url) return '';
+            
+            if (url.includes('youtube.com/watch') || url.includes('youtu.be/')) {
+                let videoId = '';
+                if (url.includes('v=')) {
+                    videoId = new URLSearchParams(new URL(url).search).get('v');
+                } else {
+                    videoId = url.split('/').pop().split('?')[0];
+                }
+                return `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+            }
+            
+            if (url.includes('drive.google.com/file/d/')) {
+                return url.replace(/\/view.*$/, '/preview');
+            }
+            
+            return url;
+        }
+
+        function getTypeIcon(type) {
+            switch(type.toUpperCase()) {
+                case 'VIDEO': return 'fa-play-circle';
+                case 'PDF': return 'fa-file-pdf';
+                case 'IMAGE': return 'fa-image';
+                default: return 'fa-link';
+            }
+        }
+
+        // --- UI Rendering ---
+
+        function renderPortfolio() {
+            const grid = document.getElementById('project-grid');
+            grid.innerHTML = ''; 
+
+            // Filter logic
+            const filteredProjects = currentFilter === 'all' 
+                ? projects 
+                : projects.filter(p => p.category === currentFilter);
+
+            if(filteredProjects.length === 0) {
+                grid.innerHTML = `<div class="col-span-full text-center text-gray-400 py-10">No projects found in this category.</div>`;
+                return;
+            }
+
+            filteredProjects.forEach(project => {
+                const card = document.createElement('div');
+                card.className = 'project-card relative group rounded-xl overflow-hidden bg-brandDark border border-white/5 shadow-lg cursor-pointer h-72';
+                
+                card.innerHTML = `
+                    <img src="${project.thumbnail}" alt="${project.title}" class="w-full h-full object-cover" loading="lazy">
+                    <div class="project-overlay absolute inset-0 bg-gradient-to-t from-black via-black/80 to-transparent opacity-0 flex flex-col justify-end p-6">
+                        <div class="flex items-center gap-2 text-brandYellow text-xs font-bold uppercase tracking-wider mb-2">
+                            <i class="fas ${getTypeIcon(project.type)}"></i> ${project.type}
+                        </div>
+                        <h3 class="text-white font-serif font-bold text-xl leading-tight mb-2 line-clamp-2">${project.title}</h3>
+                        <div class="mt-2 w-10 h-1 bg-brandRed"></div>
+                    </div>
+                `;
+
+                card.addEventListener('click', () => openPreview(project));
+                grid.appendChild(card);
+            });
+        }
+
+        // Handle Filter Button Clicks
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                // Reset styling for all buttons
+                document.querySelectorAll('.filter-btn').forEach(b => {
+                    b.classList.remove('bg-brandRed', 'border-brandRed', 'text-white', 'shadow-lg', 'shadow-brandRed/30');
+                    b.classList.add('border-white/20', 'text-gray-400');
+                });
+                
+                // Set active styling to clicked button
+                const target = e.currentTarget;
+                target.classList.remove('border-white/20', 'text-gray-400');
+                target.classList.add('bg-brandRed', 'border-brandRed', 'text-white', 'shadow-lg', 'shadow-brandRed/30');
+                
+                // Apply filter and render
+                currentFilter = target.getAttribute('data-filter');
+                renderPortfolio();
+            });
+        });
+
+        function renderStudioTable() {
+            const tbody = document.getElementById('studio-table-body');
+            tbody.innerHTML = '';
+
+            projects.forEach(project => {
+                const tr = document.createElement('tr');
+                tr.className = 'hover:bg-white/5 transition';
+                
+                tr.innerHTML = `
+                    <td class="px-4 py-4 whitespace-nowrap">
+                        <img src="${project.thumbnail}" class="w-16 h-10 object-cover rounded shadow">
+                    </td>
+                    <td class="px-4 py-4">
+                        <div class="font-bold text-white max-w-[200px] truncate" title="${project.title}">${project.title}</div>
+                        <div class="text-xs text-gray-500 max-w-[200px] truncate" title="${project.link}">${project.link}</div>
+                    </td>
+                    <td class="px-4 py-4 whitespace-nowrap">
+                        <div class="flex flex-col gap-1">
+                            <span class="text-xs text-gray-400 uppercase">${project.category === 'video' ? 'Filmmaking' : 'Design & Docs'}</span>
+                            <span class="px-2 py-1 bg-white/10 rounded text-[10px] font-semibold uppercase tracking-wider flex items-center gap-1 w-max">
+                                <i class="fas ${getTypeIcon(project.type)} text-brandYellow"></i> ${project.type}
+                            </span>
+                        </div>
+                    </td>
+                    <td class="px-4 py-4 whitespace-nowrap text-right">
+                        <button class="delete-btn text-gray-400 hover:text-brandRed transition p-2 rounded-full hover:bg-white/5" data-id="${project.id}" title="Remove Project">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+
+            document.querySelectorAll('.delete-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const id = e.currentTarget.getAttribute('data-id');
+                    deleteProject(id);
+                });
+            });
+        }
+
+        // --- Modal Interactions ---
+
+        const previewModal = document.getElementById('preview-modal');
+        const iframeWrapper = document.getElementById('iframe-wrapper');
+        const previewTitle = document.getElementById('preview-title');
+        const previewDesc = document.getElementById('preview-desc');
+        const previewIcon = document.getElementById('preview-category-icon');
+
+        function openPreview(project) {
+            const embedUrl = getEmbedUrl(project.link);
+            
+            previewTitle.textContent = project.title;
+            previewDesc.textContent = project.description;
+            previewIcon.innerHTML = `<i class="fas ${getTypeIcon(project.type)}"></i>`;
+            
+            iframeWrapper.innerHTML = `<iframe src="${embedUrl}" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>`;
+            
+            previewModal.classList.add('active');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closePreview() {
+            previewModal.classList.remove('active');
+            iframeWrapper.innerHTML = ''; 
+            document.body.style.overflow = 'auto';
+        }
+
+        document.getElementById('close-preview').addEventListener('click', closePreview);
+
+        const loginModal = document.getElementById('login-modal');
+        const studioModal = document.getElementById('studio-modal');
+        const loginError = document.getElementById('login-error');
+
+        document.getElementById('open-login-btn').addEventListener('click', () => {
+            loginModal.classList.add('active');
+            loginError.classList.add('hidden');
+            document.getElementById('login-form').reset();
+        });
+
+        document.getElementById('close-login').addEventListener('click', () => {
+            loginModal.classList.remove('active');
+        });
+
+        document.getElementById('login-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+
+            if (email === 'phabimana230@gmail.com' && password === 'Please@123') {
+                loginModal.classList.remove('active');
+                openStudio();
+            } else {
+                loginError.classList.remove('hidden');
+            }
+        });
+
+        function openStudio() {
+            renderStudioTable();
+            studioModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        document.getElementById('close-studio').addEventListener('click', () => {
+            studioModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            renderPortfolio();
+        });
+
+        document.getElementById('add-project-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const newProject = {
+                id: 'p' + Date.now(),
+                category: document.getElementById('proj-category').value,
+                type: document.getElementById('proj-type').value,
+                title: document.getElementById('proj-title').value,
+                link: document.getElementById('proj-link').value,
+                thumbnail: document.getElementById('proj-thumb').value,
+                description: document.getElementById('proj-desc').value
+            };
+
+            projects.unshift(newProject);
+            renderStudioTable();
+            e.target.reset();
+            
+            const btn = e.target.querySelector('button');
+            const originalText = btn.textContent;
+            btn.textContent = "Added Successfully!";
+            btn.classList.replace('bg-brandRed', 'bg-green-600');
+            setTimeout(() => {
+                btn.textContent = originalText;
+                btn.classList.replace('bg-green-600', 'bg-brandRed');
+            }, 2000);
+        });
+
+        function deleteProject(id) {
+            if(confirm('Are you sure you want to remove this project?')) {
+                projects = projects.filter(p => p.id !== id);
+                renderStudioTable();
+            }
+        }
+
+        window.addEventListener('click', (e) => {
+            if (e.target === previewModal) closePreview();
+            if (e.target === loginModal) loginModal.classList.remove('active');
+        });
+
+        // Initialize App
+        renderPortfolio();
+
+    </script>
+</body>
+</html>
