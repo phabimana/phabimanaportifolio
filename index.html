@@ -414,8 +414,8 @@
                             <input type="url" id="proj-link" required placeholder="https://..." class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-2.5 text-white text-sm focus:border-brandRed outline-none">
                         </div>
                         <div>
-                            <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wide">Thumbnail Image Link</label>
-                            <input type="url" id="proj-thumb" required placeholder="Image URL..." class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-2.5 text-white text-sm focus:border-brandRed outline-none">
+                            <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wide">Thumbnail Image Link <span class="text-gray-500 normal-case">(Optional for YouTube)</span></label>
+                            <input type="url" id="proj-thumb" placeholder="Leave empty for default YouTube thumbnail..." class="w-full bg-[#1A1A1A] border border-gray-700 rounded p-2.5 text-white text-sm focus:border-brandRed outline-none">
                         </div>
                         <div>
                             <label class="block text-xs font-medium text-gray-400 mb-1 uppercase tracking-wide">Description</label>
@@ -473,7 +473,6 @@
         const analytics = getAnalytics(app);
 
         // --- Core Application State & Initial Data ---
-        // Added categorization (video vs design) and updated the images
         let projects = [
             {
                 id: "p1",
@@ -535,7 +534,6 @@
                 category: "design",
                 type: "IMAGE",
                 link: "https://drive.google.com/file/d/16vNaW5ytk2zI-vMo9zX1H3S4UH39Hg67/view?usp=sharing",
-                // Updated specific thumbnail
                 thumbnail: "https://i.postimg.cc/7ZgVnn5k/nad-master-dashboard-(1).png",
                 description: "The official logo and visual identity design for the NAD MASTER DASHBOARD."
             },
@@ -562,7 +560,11 @@
             if (url.includes('youtube.com/watch') || url.includes('youtu.be/')) {
                 let videoId = '';
                 if (url.includes('v=')) {
-                    videoId = new URLSearchParams(new URL(url).search).get('v');
+                    try {
+                        videoId = new URLSearchParams(new URL(url).search).get('v');
+                    } catch(e) {
+                        videoId = url.split('v=')[1].split('&')[0];
+                    }
                 } else {
                     videoId = url.split('/').pop().split('?')[0];
                 }
@@ -753,13 +755,41 @@
         document.getElementById('add-project-form').addEventListener('submit', (e) => {
             e.preventDefault();
             
+            const linkVal = document.getElementById('proj-link').value;
+            let thumbVal = document.getElementById('proj-thumb').value;
+
+            // Logic to handle empty thumbnail (Auto-fetch YouTube thumbnail)
+            if (!thumbVal.trim() && linkVal) {
+                if (linkVal.includes('youtube.com/') || linkVal.includes('youtu.be/')) {
+                    let videoId = '';
+                    if (linkVal.includes('v=')) {
+                        try {
+                            videoId = new URLSearchParams(new URL(linkVal).search).get('v');
+                        } catch(err) {
+                            videoId = linkVal.split('v=')[1].split('&')[0];
+                        }
+                    } else {
+                        videoId = linkVal.split('/').pop().split('?')[0];
+                    }
+                    
+                    if (videoId) {
+                        thumbVal = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+                    }
+                }
+                
+                // Generic Fallback if not a YouTube video but thumbnail was left empty
+                if (!thumbVal.trim()) {
+                    thumbVal = "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&w=600&auto=format&fit=crop"; 
+                }
+            }
+            
             const newProject = {
                 id: 'p' + Date.now(),
                 category: document.getElementById('proj-category').value,
                 type: document.getElementById('proj-type').value,
                 title: document.getElementById('proj-title').value,
-                link: document.getElementById('proj-link').value,
-                thumbnail: document.getElementById('proj-thumb').value,
+                link: linkVal,
+                thumbnail: thumbVal,
                 description: document.getElementById('proj-desc').value
             };
 
